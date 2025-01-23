@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const Header = ({ course }) => {
   return (
     <h1>{ course }</h1>
@@ -30,7 +32,8 @@ const Total = ({ exercises }) => {
   )
 }
 
-const App = () => {
+//old version of the app
+const AppOLD = () => {
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -57,6 +60,38 @@ const App = () => {
       <Content parts={ course.parts } />
       <Total exercises={ count } />
     </div>
+  )
+}
+
+const DisplayCounter = ({ counter }) => (<div>{ counter }</div>)
+
+const CustomButton = ({ text, onClick }) => (<button onClick={ onClick }>{ text }</button>)
+
+const App = () => {
+  const [ counter, setCounter ] = useState( 0 )
+
+  const increaseCounter = () => setCounter( counter + 1 );
+
+  const decreaseCounter = () => setCounter( counter - 1 );
+  
+  const resetCounter = () => setCounter( 0 );
+  
+  return (
+    <>
+      <DisplayCounter counter={ counter } />
+      <CustomButton
+        text="Increase"
+        onClick={ increaseCounter }
+      />
+      <CustomButton
+        text="Decrease"
+        onClick={ decreaseCounter }
+      />
+      <CustomButton
+        text="Reset"
+        onClick={ resetCounter }
+      />
+    </>
   )
 }
 
