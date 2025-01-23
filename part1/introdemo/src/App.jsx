@@ -8,9 +8,9 @@ const Content = ({ parts }) => {
   return (
     <>
       { 
-        parts.map((item, index) => {
+        parts.map(({ name, exercises }, index) => {
           return (
-            <Part key={ index } part={ item.name } exercises={ item.exercises } />
+            <Part key={ index } part={ name } exercises={ exercises } />
           )
         })
       }
