@@ -71,6 +71,7 @@ const App = () => {
   const [bad, setBad] = useState(0)// -1
 
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState( new Array( anecdotes.length ).fill(0) )
 
   const handleChange = ( fun, curval ) => {
     fun( curval + 1 )// increment the corresponding value, good, neutral or bad
@@ -89,12 +90,20 @@ const App = () => {
     setSelected( res )
   }
 
+  const handleVote = () => {
+    const copy = [ ...votes ]
+    copy[ selected ] += 1
+    setVotes( copy )
+  }
+
   
   return (
     <>
       <Title title="Anecdotes" />
       <Anecdote selected={selected} />
-      <CustomButton text="Next anecdote" handleClick={ () => handleSelection() } />
+      <p>Has { votes[selected] } votes</p>
+      <CustomButton text="Next anecdote" handleClick={ handleSelection } />
+      <CustomButton text="Vote" handleClick={ handleVote } />
 
       <br />
       <br />
