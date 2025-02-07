@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Title = ({title}) => { return <h2>{title}</h2> }
 
@@ -7,13 +7,24 @@ const Result = ({text, value}) => { return <p>{text} {value}</p> }
 const CustomButton = ({text, handleClick}) => { return <button onClick={handleClick}>{text}</button> }
 
 const App = () => {
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
+  const [good, setGood] = useState(0)// 1
+  const [neutral, setNeutral] = useState(0)// 0
+  const [bad, setBad] = useState(0)// -1
+
+  const [avarage, setAvarage] = useState(0)
+  const [positive, setPositive] = useState(0)
 
   const handleChange = ( fun, curval ) => {
-    fun( curval + 1 )
+    fun( curval + 1 )// increment the corresponding value, good, neutral or bad
   }
+
+  useEffect(() => {
+    // I isolated the calculation of the statistics
+    // this way to use the most updated values of good, neutral and bad
+
+    setAvarage( (good - bad) / (good + neutral + bad) )// Calculate the average
+    setPositive( (good / (good + neutral + bad)) * 100 )// Calculate the positive percentage
+  }, [good, neutral, bad])
   
   return (
     <>
@@ -40,6 +51,9 @@ const App = () => {
         <Result text="Good" value={ good } />
         <Result text="Neutral" value={ neutral} />
         <Result text="Bad" value={ bad } />
+        <br />
+        <Result text="Avarage" value={ avarage } />
+        <Result text="Positive" value={ positive } />
       </section>
     </>
   )
