@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const Title = ({title}) => { return <h2>{title}</h2> }
 
-const Result = ({text, value}) => { return <p>{text} {value}</p> }
+const StatisticLine = ({text, value}) => { return <p>{text} {value}</p> }
 
 const CustomButton = ({text, handleClick}) => { return <button onClick={handleClick}>{text}</button> }
 
@@ -23,12 +23,12 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <section>
       <Title title="Statistics" />
-      <Result text="Good" value={ good } />
-      <Result text="Neutral" value={ neutral} />
-      <Result text="Bad" value={ bad } />
+      <StatisticLine text="Good" value={ good } />
+      <StatisticLine text="Neutral" value={ neutral} />
+      <StatisticLine text="Bad" value={ bad } />
       <br />
-      <Result text="Avarage" value={ avarage } />
-      <Result text="Positive" value={ `${ positive } %` } />
+      <StatisticLine text="Avarage" value={ avarage } />
+      <StatisticLine text="Positive" value={ `${ positive } %` } />
     </section>
   )
 }
