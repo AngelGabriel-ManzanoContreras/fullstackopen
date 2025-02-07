@@ -80,7 +80,6 @@ const App = () => {
   const handleSelection = ( movement ) => {
     //const res = selected + movement
     const res = Math.floor( Math.random() * anecdotes.length )
-    console.log( res )
     
     if ( res < 0 || res >= anecdotes.length ) {
       setSelected( 0 )
@@ -105,7 +104,14 @@ const App = () => {
       <CustomButton text="Next anecdote" handleClick={ handleSelection } />
       <CustomButton text="Vote" handleClick={ handleVote } />
 
+
       <br />
+      <br />
+      <Title title="Most voted anecdote" />
+      <Anecdote selected={ votes.indexOf( Math.max( ...votes ) ) } />
+      <p>Has { Math.max( ...votes ) } votes</p>
+
+      {/* <br />
       <br />
       <br />
       <Title title="Give feedback" />
@@ -125,7 +131,7 @@ const App = () => {
         />
       </section>
 
-      <Statistics good={good} neutral={neutral} bad={bad} />
+      <Statistics good={good} neutral={neutral} bad={bad} /> */}
     </>
   )
 }
