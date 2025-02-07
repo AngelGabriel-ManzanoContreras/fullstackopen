@@ -2,7 +2,14 @@ import { useState } from "react"
 
 const Title = ({title}) => { return <h2>{title}</h2> }
 
-const StatisticLine = ({text, value}) => { return <p>{text} {value}</p> }
+const StatisticLine = ({text, value}) => {
+  return (
+    <tr>
+      <td>{ text }</td>
+      <td>{ value }</td>
+    </tr>
+  )
+}
 
 const CustomButton = ({text, handleClick}) => { return <button onClick={handleClick}>{text}</button> }
 
@@ -23,12 +30,16 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <section>
       <Title title="Statistics" />
-      <StatisticLine text="Good" value={ good } />
-      <StatisticLine text="Neutral" value={ neutral} />
-      <StatisticLine text="Bad" value={ bad } />
-      <br />
-      <StatisticLine text="Avarage" value={ avarage } />
-      <StatisticLine text="Positive" value={ `${ positive } %` } />
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={good} />
+          <StatisticLine text="Neutral" value={neutral} />
+          <StatisticLine text="Bad" value={bad} />
+          <StatisticLine text="All" value={totalFeedback} />
+          <StatisticLine text="Avarage" value={avarage} />
+          <StatisticLine text="Positive" value={`${positive} %`} />
+        </tbody>
+      </table>
     </section>
   )
 }
