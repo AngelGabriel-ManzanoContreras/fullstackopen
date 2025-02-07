@@ -11,6 +11,15 @@ const Statistics = ({good, neutral, bad}) => {
   const avarage = (good - bad) / ( totalFeedback ) || 0
   const positive = (good / ( totalFeedback )) * 100 || 0
 
+  if ( totalFeedback === 0 ) {
+    return (
+      <section>
+        <Title title="Statistics" />
+        <p>No feedback given</p>
+      </section>
+    )
+  }
+
   return (
     <section>
       <Title title="Statistics" />
